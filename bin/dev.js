@@ -8,7 +8,7 @@ createViteServer({
 }).then((vite) => {
   const server = createServer((req, res) => {
     vite.middlewares(req, res, async () => {
-      const handler = (await vite.ssrLoadModule("/src/server/handlers/handler.node.ts")).default;
+      const handler = (await vite.ssrLoadModule("/src/server/handlers/handler.node.ts")).handlerNode;
       await handler({ req, res, vite });
     });
   });

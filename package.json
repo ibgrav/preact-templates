@@ -4,13 +4,14 @@
   "scripts": {
     "dev": "node bin/dev.js",
     "prod": "node bin/prod.js",
-    "dev:netlify": "yarn build:netlify && netlify dev -d public -c \"yarn dev\"",
+    "dev:netlify": "yarn build:client && yarn build:netlify && netlify dev -d ./dist/client -c \"yarn dev\"",
     "build": "yarn build:client && yarn build:node && yarn build:netlify",
     "build:client": "vite build",
     "build:node": "SSR=node vite build",
     "build:netlify": "SSR=netlify vite build"
   },
   "dependencies": {
+    "goober": "^2.1.9",
     "preact": "^10.8.1",
     "preact-render-to-string": "^5.2.0",
     "sirv": "^2.0.2"

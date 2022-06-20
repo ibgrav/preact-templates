@@ -3,8 +3,15 @@ import preact from "@preact/preset-vite";
 
 const SSR = process.env.SSR;
 
-const client = defineConfig({
+const shared = defineConfig({
   plugins: [preact()],
+  esbuild: {
+    logOverride: { "this-is-undefined-in-esm": "silent" },
+  },
+});
+
+const client = defineConfig({
+  ...shared,
   build: {
     manifest: true,
     outDir: "dist/client",
@@ -15,7 +22,7 @@ const client = defineConfig({
 });
 
 const server = defineConfig({
-  plugins: [preact()],
+  ...shared,
   publicDir: false,
   build: {
     outDir: `dist/${process.env.SSR}`,
