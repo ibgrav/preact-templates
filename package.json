@@ -1,0 +1,27 @@
+{
+  "name": "preact-templates",
+  "private": "true",
+  "scripts": {
+    "dev": "node bin/dev.js",
+    "prod": "node bin/prod.js",
+    "dev:netlify": "yarn build:netlify && netlify dev -d public -c \"yarn dev\"",
+    "build": "yarn build:client && yarn build:node && yarn build:netlify",
+    "build:client": "vite build",
+    "build:node": "SSR=node vite build",
+    "build:netlify": "SSR=netlify vite build"
+  },
+  "dependencies": {
+    "preact": "^10.8.1",
+    "preact-render-to-string": "^5.2.0",
+    "sirv": "^2.0.2"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^1.0.0",
+    "@preact/preset-vite": "^2.2.0",
+    "@types/node": "^18.0.0",
+    "sass": "^1.52.3",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.12"
+  }
+}
