@@ -11,7 +11,7 @@ export interface HandlerProps {
 
 export async function handler({ event, vite, manifest }: HandlerProps) {
   try {
-    let doc = render(Page, {}, manifest);
+    let doc = render(Page, { event }, manifest);
 
     if (vite) doc = await vite.transformIndexHtml(event.url.pathname, doc);
 

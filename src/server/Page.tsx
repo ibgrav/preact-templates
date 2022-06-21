@@ -1,12 +1,31 @@
+import { createGlobalStyles } from "goober/global";
 import { AccordianTemplate } from "../components/accordian/Accordian.template";
 import { ButtonTemplate } from "../components/button/Button.template";
 import { TitleTemplate } from "../components/title/Title.template";
+import { Event } from "./Event";
 
-export const Page = () => {
+interface PageProps {
+  event: Event;
+}
+
+export const Page = ({ event }: PageProps) => {
+  const GlobalStyles = createGlobalStyles`
+    html,
+    body {
+      background: #f9ecfccc;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+  `;
+
   return (
     <>
+      <GlobalStyles />
       <main>
-        <TitleTemplate>Hello World!</TitleTemplate>
+        <TitleTemplate>Hello World! originalUrl = {event.originalUrl}</TitleTemplate>
         <ButtonTemplate hydrate count={10} />
         <AccordianTemplate
           items={[

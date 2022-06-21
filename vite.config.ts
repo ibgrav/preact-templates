@@ -1,10 +1,12 @@
 import { defineConfig } from "vite";
 import preact from "@preact/preset-vite";
+import { resolve } from "path";
 
 const SSR = process.env.SSR;
 
 const shared = defineConfig({
   plugins: [preact()],
+  resolve: { alias: [{ find: "src", replacement: resolve(process.cwd(), "src") }] },
   esbuild: {
     logOverride: { "this-is-undefined-in-esm": "silent" },
   },

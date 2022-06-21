@@ -4,7 +4,7 @@ import { css } from "goober";
 
 interface AccordianTemplateProps extends AccordianProps {
   openIndex?: null | number;
-  onClick?: (e: JSX.TargetedMouseEvent<HTMLDetailsElement>, index: number) => void;
+  onClick?: (e: JSX.TargetedMouseEvent<HTMLElement>, index: number) => void;
 }
 
 export const AccordianTemplate = defineTemplate(
@@ -13,8 +13,9 @@ export const AccordianTemplate = defineTemplate(
     return (
       <>
         {items.map(({ title, blurb }, i) => (
-          <details key={i} open={openIndex === i} onClick={(e) => onClick?.(e, i)}>
+          <details key={i} open={openIndex === i}>
             <summary
+              onClick={(e) => onClick?.(e, i)}
               className={css`
                 &:hover {
                   cursor: pointer;

@@ -26,6 +26,7 @@ export function render<P>(Component: FunctionalComponent<P>, props: P, manifest?
   </head>
   <body>
     ${body}
+    <pre>rendered ${new Date().toUTCString()}</pre>
     <script src="/${script}" type="module"></script>
   </body>
 </html>`;
